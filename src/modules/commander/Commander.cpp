@@ -1949,6 +1949,16 @@ void Commander::run()
 
 			perf_end(_preflight_check_perf);
 			checkAndInformReadyForTakeoff();
+
+			// Arm automatically on boot once preflight checks pass
+			// _arm_on_boot_done prevents re-arming after disarming
+			if (_param_com_arm_on_boot.get() && !_arm_on_boot_done && !isArmed()) {
+				if (pre_flight_checks_pass) {
+					if (arm(arm_disarm_reason_t::mission_start, false) != TRANSITION_DENIED) {
+						_arm_on_boot_done = true;
+					}
+				}
+			}
 		}
 
 		// handle commands last, as the system needs to be updated to handle them
