@@ -187,6 +187,24 @@ FailsafeBase::ActionOptions Failsafe::fromActuatorFailureActParam(int param_valu
 	return options;
 }
 
+FailsafeBase::ActionOptions Failsafe::fromAltLossActParam(int param_value)
+{
+	ActionOptions options{};
+
+	switch (alt_loss_failsafe_mode(param_value)) {
+	case alt_loss_failsafe_mode::Disabled:
+	default:
+		options.action = Action::None;
+		break;
+
+	case alt_loss_failsafe_mode::Terminate:
+		options.action = Action::Terminate;
+		break;
+	}
+
+	return options;
+}
+
 FailsafeBase::ActionOptions Failsafe::fromBatteryWarningActParam(int param_value, uint8_t battery_warning)
 {
 	ActionOptions options{};
@@ -634,6 +652,7 @@ void Failsafe::checkStateAndMode(const hrt_abstime &time_us, const State &state,
 
 	CHECK_FAILSAFE(status_flags, fd_imbalanced_prop, fromImbalancedPropActParam(_param_com_imb_prop_act.get()));
 	CHECK_FAILSAFE(status_flags, fd_motor_failure, fromActuatorFailureActParam(_param_com_actuator_failure_act.get()));
+	CHECK_FAILSAFE(status_flags, fd_alt_loss, fromAltLossActParam(_param_com_alt_loss_act.get()));
 
 
 

@@ -91,3 +91,30 @@ parameters:
       min: 0
       max: 1000
       increment: 1
+    FD_ALT_LOSS:
+      description:
+        short: Altitude loss threshold for failure detection
+        long: |-
+          Minimum altitude loss (in meters) below the highest point reached since
+          entering altitude control that triggers the altitude failure flag.
+
+          Setting this value to 0 disables the check.
+      type: float
+      default: 0.0
+      min: 0.0
+      max: 200.0
+      unit: m
+      decimal: 1
+      increment: 0.5
+    FD_ALT_LOSS_T:
+      description:
+        short: Altitude loss failure trigger time
+        long: |-
+          Seconds that the altitude loss threshold must be exceeded before the
+          failure is declared.
+      type: float
+      default: 1.0
+      min: 0.02
+      max: 5.0
+      unit: s
+      decimal: 2

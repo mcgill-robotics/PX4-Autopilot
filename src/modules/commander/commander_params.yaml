@@ -193,6 +193,18 @@ parameters:
         2: Land
       default: 0
       increment: 1
+    COM_ALT_LOSS_ACT:
+      description:
+        short: Altitude loss failsafe mode
+        long: |-
+          Action the system takes when uncommanded altitude loss is detected by the failure detector.
+          See FD_ALT_LOSS and FD_ALT_LOSS_T to configure the detection threshold and trigger time.
+      type: enum
+      values:
+        -1: Disabled
+        0: Terminate
+      default: -1
+      increment: 1
     COM_OF_LOSS_T:
       description:
         short: Offboard connection loss timeout

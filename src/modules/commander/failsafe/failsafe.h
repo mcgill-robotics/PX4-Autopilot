@@ -95,6 +95,11 @@ private:
 		Land = 2,
 	};
 
+	enum class alt_loss_failsafe_mode : int32_t {
+		Disabled = -1,
+		Terminate = 0,
+	};
+
 	enum class geofence_violation_action : int32_t {
 		None = 0,
 		Warning = 1,
@@ -162,6 +167,7 @@ private:
 	static ActionOptions fromGfActParam(int param_value);
 	static ActionOptions fromImbalancedPropActParam(int param_value);
 	static ActionOptions fromActuatorFailureActParam(int param_value);
+	static ActionOptions fromAltLossActParam(int param_value);
 	static ActionOptions fromBatteryWarningActParam(int param_value, uint8_t battery_warning);
 	static ActionOptions fromQuadchuteActParam(int param_value);
 	static Action fromOffboardLossActParam(int param_value, uint8_t &user_intended_mode);
@@ -209,7 +215,8 @@ private:
 					(ParamInt<px4::params::COM_QC_ACT>) _param_com_qc_act,
 					(ParamInt<px4::params::COM_WIND_MAX_ACT>) _param_com_wind_max_act,
 					(ParamInt<px4::params::COM_FLTT_LOW_ACT>) _param_com_fltt_low_act,
-					(ParamInt<px4::params::COM_POS_LOW_ACT>) _param_com_pos_low_act
+					(ParamInt<px4::params::COM_POS_LOW_ACT>) _param_com_pos_low_act,
+					(ParamInt<px4::params::COM_ALT_LOSS_ACT>) _param_com_alt_loss_act
 				       );
 
 };
