@@ -325,6 +325,20 @@ else
 	then
 		sensors start -h
 
+		# If UAVCAN is enabled, then disable the local sensors
+		if param greater UAVCAN_ENABLE 0
+		then
+			param set UAVCAN_SUB_GPS 0
+			param set UAVCAN_SUB_BARO 0
+			param set UAVCAN_SUB_GPS_R 0
+			param set UAVCAN_SUB_IMU 0
+			param set UAVCAN_SUB_MAG 0
+			param set UAVCAN_SUB_ASPD 0
+			param set UAVCAN_SUB_DPRES 0
+			param set UAVCAN_SUB_FLOW 0
+			param set UAVCAN_SUB_MBD 0
+			param set UAVCAN_SUB_RNG 0
+		fi
 		# disable GPS
 		param set GPS_1_CONFIG 0
 
