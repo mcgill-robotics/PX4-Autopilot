@@ -368,7 +368,15 @@ void DShot::update_motor_outputs(uint16_t outputs[MAX_ACTUATORS], int num_output
 			up_dshot_motor_command(i, DSHOT_CMD_MOTOR_STOP, set_telemetry_bit);
 
 		} else {
-			up_dshot_motor_data_set(i, calculate_output_value(outputs[i], i), set_telemetry_bit);
+			uint16_t output = calculate_output_value(outputs[i], i);
+
+			// 3D deadzone: send motor stop to avoid MIN_throttle offset in up_dshot_motor_data_set
+			if (output == DSHOT_DISARM_VALUE) {
+				up_dshot_motor_command(i, DSHOT_CMD_MOTOR_STOP, set_telemetry_bit);
+
+			} else {
+				up_dshot_motor_data_set(i, output, set_telemetry_bit);
+			}
 		}
 	}
 }
