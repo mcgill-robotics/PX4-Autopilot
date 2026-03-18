@@ -10,4 +10,4 @@ In addition to the core code review guidelines:
 - Container image size: check for layer bloat
 - Ubuntu LTS support policy: only latest + one prior LTS version
 - Consider build time impact of changes
-- Prefer cmake over Makefiles
+- Prefer CMake over Makefiles

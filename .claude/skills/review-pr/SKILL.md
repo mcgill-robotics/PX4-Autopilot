@@ -121,7 +121,7 @@ Review a pull request with domain-aware checks based on which files are changed.
    - Container image size (check layer bloat)
    - Ubuntu LTS support policy (latest + one prior only)
    - Build time impact
-   - Cmake preferred over Makefiles
+   - CMake preferred over Makefiles
 
    **Messages/Protocol:**
    - Backwards compatibility: will this break QGC, post-flight tools, or uLog parsers?
@@ -155,7 +155,7 @@ Review a pull request with domain-aware checks based on which files are changed.
    - **Issues**: numbered list, each with file:line, severity (blocker/warning/nit), and explanation. Skip issues already raised by other reviewers unless you have something to add.
    - **Verdict**: approve, request changes, or needs discussion
 
-   After the structured output, also display a **draft PR comment** formatted using the PR comment formatting rules from step 8. This gives the user a preview of what would be posted.
+   After the structured output, also display a **draft PR comment** formatted using the PR comment formatting rules from step 9. This gives the user a preview of what would be posted.
 
 9. **Interactive dialog.** After displaying the review, present the user with these options:
 
