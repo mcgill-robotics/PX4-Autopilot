@@ -4,7 +4,7 @@ PX4 generates a [Software Bill of Materials](https://ntia.gov/SBOM) for every fi
 
 ## Why SBOM?
 
-- **Regulatory compliance**: The EU Cyber Resilience Act (CRA) requires SBOMs for products with digital elements (reporting obligations begin September 2026).
+- **Regulatory compliance**: The EU Cyber Resilience Act (CRA) requires SBOMs for products with digital elements (reporting obligations begin in September 2026).
 - **Supply chain transparency**: SBOMs enumerate every component compiled into firmware, enabling users and integrators to audit dependencies.
 - **NTIA minimum elements**: Each SBOM satisfies all seven [NTIA required fields](https://www.ntia.gov/report/2021/minimum-elements-software-bill-materials-sbom): supplier, component name, version, unique identifier, dependency relationship, author, and timestamp.
 
@@ -29,12 +29,13 @@ Typical SBOM size: 70-100 packages, ~500 lines, ~20 KB JSON.
 SBOMs are generated automatically as part of every CMake build.
 The output file is:
 
-```
+```txt
 build/<target>/<target>.sbom.spdx.json
 ```
 
 For example:
-```
+
+```txt
 build/px4_fmu-v6x_default/px4_fmu-v6x_default.sbom.spdx.json
 ```
 
@@ -44,7 +45,7 @@ It requires PyYAML (`pyyaml`) for loading license overrides.
 ### CMake Integration
 
 The `sbom` CMake target is included in the default `ALL` target.
-The relevant cmake module is `cmake/sbom.cmake`.
+The relevant CMake module is `cmake/sbom.cmake`.
 
 ### Disabling SBOM Generation
 
@@ -78,11 +79,11 @@ python3 Tools/ci/generate_sbom.py \
 
 SBOMs are available in:
 
-| Location | Path |
-|----------|------|
+| Location        | Path                                     |
+| --------------- | ---------------------------------------- |
 | Build directory | `build/<target>/<target>.sbom.spdx.json` |
-| GitHub Releases | Alongside `.px4` firmware files |
-| S3 | Same directory as firmware artifacts |
+| GitHub Releases | Alongside `.px4` firmware files          |
+| S3              | Same directory as firmware artifacts     |
 
 ## Validation
 
@@ -114,20 +115,20 @@ to prevent false positives.
 
 Supported patterns include:
 
-| SPDX Identifier | Matched Keywords |
-|-----------------|-----------------|
-| GPL-3.0-only | "GNU GENERAL PUBLIC LICENSE", "Version 3" |
-| GPL-2.0-only | "GNU GENERAL PUBLIC LICENSE", "Version 2" |
-| LGPL-3.0-only | "GNU LESSER GENERAL PUBLIC LICENSE", "Version 3" |
-| LGPL-2.1-only | "GNU Lesser General Public License", "Version 2.1" |
-| AGPL-3.0-only | "GNU AFFERO GENERAL PUBLIC LICENSE", "Version 3" |
-| Apache-2.0 | "Apache License", "Version 2.0" |
-| MIT | "Permission is hereby granted" |
-| BSD-3-Clause | "Redistribution and use", "Neither the name" |
-| BSD-2-Clause | "Redistribution and use", "THIS SOFTWARE IS PROVIDED" |
-| ISC | "Permission to use, copy, modify, and/or distribute" |
-| EPL-2.0 | "Eclipse Public License", "2.0" |
-| Unlicense | "The Unlicense", "unlicense.org" |
+| SPDX Identifier | Matched Keywords                                      |
+| --------------- | ----------------------------------------------------- |
+| GPL-3.0-only    | "GNU GENERAL PUBLIC LICENSE", "Version 3"             |
+| GPL-2.0-only    | "GNU GENERAL PUBLIC LICENSE", "Version 2"             |
+| LGPL-3.0-only   | "GNU LESSER GENERAL PUBLIC LICENSE", "Version 3"      |
+| LGPL-2.1-only   | "GNU Lesser General Public License", "Version 2.1"    |
+| AGPL-3.0-only   | "GNU AFFERO GENERAL PUBLIC LICENSE", "Version 3"      |
+| Apache-2.0      | "Apache License", "Version 2.0"                       |
+| MIT             | "Permission is hereby granted"                        |
+| BSD-3-Clause    | "Redistribution and use", "Neither the name"          |
+| BSD-2-Clause    | "Redistribution and use", "THIS SOFTWARE IS PROVIDED" |
+| ISC             | "Permission to use, copy, modify, and/or distribute"  |
+| EPL-2.0         | "Eclipse Public License", "2.0"                       |
+| Unlicense       | "The Unlicense", "unlicense.org"                      |
 
 If no pattern matches, the license is set to `NOASSERTION`.
 
@@ -194,11 +195,11 @@ This section is for integrators, compliance teams, and anyone reviewing SBOM art
 
 ### Where to Find SBOMs
 
-| Location | Path |
-|----------|------|
+| Location        | Path                                     |
+| --------------- | ---------------------------------------- |
 | Build directory | `build/<target>/<target>.sbom.spdx.json` |
-| GitHub Releases | Alongside `.px4` firmware files |
-| S3 | Same directory as firmware artifacts |
+| GitHub Releases | Alongside `.px4` firmware files          |
+| S3              | Same directory as firmware artifacts     |
 
 ### Reading the JSON
 
