@@ -65,6 +65,28 @@ Firmware can be manually installed in any of the normal ways:
 - [Load the firmware](../config/firmware.md) using _QGroundControl_.
   You can use either pre-built firmware or your own custom firmware.
 
+## PWM Outputs
+
+This flight controller supports up to 14 FMU PWM outputs (MAIN).
+
+Outputs:
+
+- Outputs 1-8, 11-14 support [DShot](../peripherals/dshot.md).
+- Outputs 9-10 do not support DShot.
+- Outputs 1-5, 7-8, 11-14 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+- Output 6 supports Bidirectional DShot output only (no eRPM capture).
+
+The 14 outputs are in 6 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer4)
+- Outputs 7-8 in group3 (Timer5)
+- Outputs 9-10 in group4 (Timer15)
+- Outputs 11-13 in group5 (Timer3)
+- Output 14 in group6 (Timer2)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port             | Default function |

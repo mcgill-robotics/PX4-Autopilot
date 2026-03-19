@@ -85,6 +85,20 @@ Select the PX4 edition when purchasing!
 The manual with pinouts can be downloaded from [here](http://seriouslypro.com/files/SPRacingH7EXTREME-Manual-latest.pdf).
 See the [SPRacingH7EXTREME website](http://seriouslypro.com/products/spracingh7extreme) for other diagrams.
 
+## PWM Outputs
+
+This flight controller supports up to 8 FMU PWM outputs (MAIN).
+
+All outputs support [DShot](../peripherals/dshot.md) and [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 8 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer5)
+- Outputs 5-6 in group2 (Timer4)
+- Outputs 7-8 in group3 (Timer8)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Credits
 
 This design was created by [Dominic Clifton](https://github.com/hydra)

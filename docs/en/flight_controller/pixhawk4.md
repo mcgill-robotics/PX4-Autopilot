@@ -73,6 +73,24 @@ Connector pin assignments are left to right (i.e. Pin 1 is the left-most pin).
 The exception is the [debug port(s)](#debug_port) (pin 1 is the right-most, as shown below).
 :::
 
+## PWM Outputs
+
+This flight controller supports up to 11 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+FMU Outputs:
+
+- Outputs 1-4 support [DShot](../peripherals/dshot.md).
+- Outputs 5-8 do not support DShot.
+- Outputs 1-4 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 11 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer4)
+- Outputs 7-8 in group3 (Timer12)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port                  |

@@ -143,6 +143,25 @@ Notes:
 
 - The [camera capture pin](../camera/fc_connected_camera.md#camera-capture-configuration) (`PI0`) is pin 2 on the AD&IO port, marked above as `FMU_CAP1`.
 
+## PWM Outputs
+
+This flight controller supports up to 12 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+FMU Outputs:
+
+- Outputs 1-8 support [DShot](../peripherals/dshot.md).
+- Outputs 9-12 do not support DShot.
+- Outputs 1-8 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 12 outputs are in 4 groups:
+
+- Outputs 1-3 in group1 (PWM1)
+- Outputs 4-7 in group2 (PWM2)
+- Outputs 8-10 in group3 (PWM3)
+- Outputs 11-12 in group4 (PWM4)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port     |

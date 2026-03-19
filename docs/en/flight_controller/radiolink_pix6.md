@@ -299,6 +299,24 @@ Recommended modules include:
 - [Radiolink TS100](https://radiolink.com.cn/ts100v2)
 - [Radiolink RTK F9P](https://radiolink.com.cn/rtk_f9p)
 
+## PWM Outputs
+
+This flight controller supports up to 8 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+FMU Outputs:
+
+- Outputs 1-8 support [DShot](../peripherals/dshot.md).
+- Outputs 1-4 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+- Outputs 5-8 support Bidirectional DShot output only (no eRPM capture).
+
+The 8 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer2)
+- Outputs 7-8 in group3 (Timer3)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port                  |

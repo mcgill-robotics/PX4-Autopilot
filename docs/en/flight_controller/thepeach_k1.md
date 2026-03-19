@@ -52,6 +52,19 @@ This flight controller is [manufacturer supported](../flight_controller/autopilo
 
 ![pinmap_bottom](../../assets/flight_controller/thepeach_k1/pinmap_bottom.png)
 
+## PWM Outputs
+
+This flight controller supports up to 5 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+[DShot](../peripherals/dshot.md) is not supported.
+
+The 5 outputs are in 2 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Output 5 in group2 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port                  |

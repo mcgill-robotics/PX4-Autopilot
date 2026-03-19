@@ -85,7 +85,25 @@ The following image shows the port connection details, including RC, UARTs, CAN,
 | USART6 | RC                | RC Input      |
 | UART7  | TELEM4            | ESC Telemetry |
 
-### Debug Port
+### PWM Outputs
+
+This flight controller supports up to 10 FMU PWM outputs (MAIN).
+
+Outputs:
+
+- Outputs 1-10 support [DShot](../peripherals/dshot.md).
+- Outputs 1-9 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+- Output 10 supports Bidirectional DShot output only (no eRPM capture).
+
+The 10 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer3)
+- Outputs 7-10 in group3 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
+## Debug Port
 
 The board features a **4-pin SWD Debug** interface located on the right side of the board. This includes `SWCLK`, `SWDIO`, `3V3`, and `GND` for full hardware debugging. While a dedicated UART isn't strictly reserved for the NSH console by default, the full-speed USB connection provides MAVLink Console access out of the box.
 

@@ -164,6 +164,19 @@ To [build PX4](../dev_setup/building_px4.md) for this target:
 make holybro_durandal-v1_default
 ```
 
+## PWM Outputs
+
+This flight controller supports up to 10 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+All FMU outputs support [DShot](../peripherals/dshot.md) and [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 10 outputs are in 2 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Output 5 in group2 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port          |

@@ -109,6 +109,19 @@ The user guide is [here](http://mindpx.net/assets/accessories/UserGuide9.18_2_pd
 MindRacer is available at [AirMind Store](https://airmind.mindpx.net/catalog).
 You can also find MindRacer at Amazon<sup>&reg;</sup> or eBay<sup>&reg;</sup>.
 
+## PWM Outputs
+
+This flight controller supports up to 8 FMU PWM outputs (MAIN).
+
+[DShot](../peripherals/dshot.md) is not supported.
+
+The 8 outputs are in 2 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-8 in group2 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port          |

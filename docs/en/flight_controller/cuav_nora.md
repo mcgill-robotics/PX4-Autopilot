@@ -129,6 +129,26 @@ The _Nora_ has short circuit protection.
 Up to 2.5 A can be delivered to the connectors listed as pin 1 (although these are only rated at 1 A).
 :::
 
+## PWM Outputs
+
+This flight controller supports up to 14 FMU PWM outputs (MAIN).
+
+Outputs:
+
+- Outputs 1-12 support [DShot](../peripherals/dshot.md).
+- Outputs 13-14 do not support DShot.
+- Outputs 1-7, 9-12 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+- Output 8 supports Bidirectional DShot output only (no eRPM capture).
+
+The 14 outputs are in 4 groups:
+
+- Outputs 1-4 in group1 (Timer5)
+- Outputs 5-8 in group2 (Timer4)
+- Outputs 9-12 in group3 (Timer1)
+- Outputs 13-14 in group4 (Timer12)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Debug Port
 
 The system's serial console and SWD interface operate on the **DSU7** port.

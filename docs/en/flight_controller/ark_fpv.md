@@ -83,6 +83,24 @@ See the documentation [Ark Electronics GitBook](https://arkelectron.gitbook.io/a
 - LED Indicators
 - MicroSD Slot
 
+## PWM Outputs
+
+This flight controller supports up to 9 FMU PWM outputs (MAIN).
+
+Outputs:
+
+- Outputs 1-8 support [DShot](../peripherals/dshot.md).
+- Output 9 does not support DShot.
+- Outputs 1-8 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 9 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer5)
+- Outputs 5-8 in group2 (Timer8)
+- Output 9 in group3 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Pinout
 
 See the [DS-10 Pixhawk Autopilot Bus Standard](https://arkelectron.gitbook.io/ark-documentation/flight-controllers/ark-fpv/pinout)

@@ -120,7 +120,20 @@ Board schematics and other documentation can be found here: [The Cube Project](h
 
 <a id="serial_ports"></a>
 
-### Serial Port Mapping
+### PWM Outputs
+
+This flight controller supports up to 6 FMU PWM outputs (AUX) and 8 IO PWM outputs (MAIN).
+
+All FMU outputs support [DShot](../peripherals/dshot.md) ([Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry) not supported).
+
+The 6 outputs are in 2 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer4)
+
+All outputs within the same group must use the same output protocol and rate.
+
+## Serial Port Mapping
 
 | UART   | Device     | Port                  |
 | ------ | ---------- | --------------------- |

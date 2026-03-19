@@ -84,6 +84,24 @@ Order this module from:
 
 [ARK Pi6X Flashing Guide](https://arkelectron.gitbook.io/ark-documentation/flight-controllers/ark-pi6x-flow/flashing-guide)
 
+## PWM Outputs
+
+This flight controller supports up to 8 FMU PWM outputs (MAIN).
+
+Outputs:
+
+- Outputs 1-6 support [DShot](../peripherals/dshot.md).
+- Outputs 7-8 do not support DShot.
+- Outputs 1-6 support [Bidirectional DShot](../peripherals/dshot.md#bidirectional-dshot-telemetry).
+
+The 8 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer5)
+- Outputs 5-6 in group2 (Timer4)
+- Outputs 7-8 in group3 (Timer12)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Pinout
 
 ![ARK Pi6X Flow Pinout](../../assets/flight_controller/ark_pi6x_flow/ark_pi6xflow_pinout.png)

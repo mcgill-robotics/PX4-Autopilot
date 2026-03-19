@@ -102,6 +102,20 @@ There is also an [ARM20-CTX 20-Pin to TC2030-IDC adapter](https://www.tag-connec
 
 ![mRo Control Zero F7](../../assets/flight_controller/mro_control_zero_f7/mro_control_pinouts.jpg)
 
+## PWM Outputs
+
+This flight controller supports up to 8 FMU PWM outputs (MAIN).
+
+[DShot](../peripherals/dshot.md) is not supported.
+
+The 8 outputs are in 3 groups:
+
+- Outputs 1-4 in group1 (Timer1)
+- Outputs 5-6 in group2 (Timer4)
+- Outputs 7-8 in group3 (Timer8)
+
+All outputs within the same group must use the same output protocol and rate.
+
 ## Serial Port Mapping
 
 | UART   | Device     | Port                                                            |
