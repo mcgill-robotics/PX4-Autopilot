@@ -28,29 +28,29 @@ See [PX4-Autopilot#23602](https://github.com/PX4/PX4-Autopilot/issues/23602) for
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Gazebo](../sim_gazebo_gz/index.md)              | Gazebo supersedes [Gazebo Classic](../sim_gazebo_classic/index.md), featuring more advanced rendering, physics and sensor models. It is the only version of Gazebo available from Ubuntu Linux 22.04<br><br>A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md) and is commonly used with [ROS](../simulation/ros_interface.md), a collection of tools for automating vehicle control. <br><br><strong>Supported Vehicles:</strong> Quad, VTOL (Standard, Tailsitter, Tiltroter), Plane, Rovers |
 | [Gazebo Classic](../sim_gazebo_classic/index.md) | A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md) and is commonly used with [ROS](../simulation/ros_interface.md), a collection of tools for automating vehicle control.<br><br>**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter)), Hex (Typhoon H480), [Generic Standard VTOL (QuadPlane)](../airframes/airframe_reference.md#vtol_standard_vtol_generic_standard_vtol), Tailsitter, Plane, Rover, Submarine                    |
-| [SIH](../sim_sih/index.md)                          | A lightweight, headless simulator that runs physics directly inside PX4 as a C++ module (no external dependencies). Headless by default for fastest iteration. Supports ROS 2 via uXRCE-DDS. Can also run on flight controller hardware (`SYS_HITL=2`).<br><br>**Supported Vehicles:** Quad, Hex, Plane, Tailsitter, Standard VTOL, Rover |
+| [SIH](../sim_sih/index.md)                       | A lightweight, headless simulator that runs physics directly inside PX4 as a C++ module (no external dependencies). Headless by default for fastest iteration. Supports ROS 2 via uXRCE-DDS. Can also run on flight controller hardware (`SYS_HITL=2`).<br><br>**Supported Vehicles:** Quad, Hex, Plane, Tailsitter, Standard VTOL, Rover                                                                                                                                                                                                                                                                                                                      |
 
 There are also a number of [Community Supported Simulators](../simulation/community_supported_simulators.md).
 
 ### Simulator Comparison
 
-| Feature | Gazebo | SIH |
-|---|---|---|
-| **Default Mode** | GUI with 3D rendering | Headless (fastest iteration) |
-| **3D Visualization** | Built-in (photorealistic) | Optional: QGC map or jMAVSim display-only |
-| **Physics Engine** | External (gz-physics) | Internal (C++ module, uORB) |
-| **External Dependencies** | Gazebo packages, rendering libs | None |
-| **Vehicle Types** | Quad, VTOL, Plane, Rovers | Quad, Hex, Plane, Tailsitter, Std VTOL, Rover |
-| **Multi-vehicle** | Yes (documented) | Yes ([multi-vehicle](../sim_sih/index.md#multi-vehicle-simulation)) |
-| **Sensor Simulation** | Camera, LiDAR, depth, IMU, GPS, baro, mag | IMU, GPS, baro, mag, airspeed |
-| **Custom Worlds/Models** | Yes (SDF, large model library) | No |
-| **ROS 2 Integration** | Yes (uXRCE-DDS) | Yes (uXRCE-DDS) |
-| **Extensibility** | Plugins, custom sensors, environments | Modify C++ source, tune SIH_* parameters |
-| **Community/Ecosystem** | Large Gazebo community, model repos | PX4-internal |
-| **Faster-than-Realtime** | Yes | Yes |
-| **Runs on FC Hardware** | No | Yes (SYS_HITL=2) |
-| **macOS Apple Silicon** | Unstable (known issues) | Works natively |
-| **Lockstep** | Yes | Yes |
+| Feature                   | Gazebo                                    | SIH                                                                 |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------- |
+| **Default Mode**          | GUI with 3D rendering                     | Headless (fastest iteration)                                        |
+| **3D Visualization**      | Built-in (photorealistic)                 | Optional: QGC map or jMAVSim display-only                           |
+| **Physics Engine**        | External (gz-physics)                     | Internal (C++ module, uORB)                                         |
+| **External Dependencies** | Gazebo packages, rendering libs           | None                                                                |
+| **Vehicle Types**         | Quad, VTOL, Plane, Rovers                 | Quad, Hex, Plane, Tailsitter, Std VTOL, Rover                       |
+| **Multi-vehicle**         | Yes (documented)                          | Yes ([multi-vehicle](../sim_sih/index.md#multi-vehicle-simulation)) |
+| **Sensor Simulation**     | Camera, LiDAR, depth, IMU, GPS, baro, mag | IMU, GPS, baro, mag, airspeed                                       |
+| **Custom Worlds/Models**  | Yes (SDF, large model library)            | No                                                                  |
+| **ROS 2 Integration**     | Yes (uXRCE-DDS)                           | Yes (uXRCE-DDS)                                                     |
+| **Extensibility**         | Plugins, custom sensors, environments     | Modify C++ source, tune SIH\_\* parameters                          |
+| **Community/Ecosystem**   | Large Gazebo community, model repos       | PX4-internal                                                        |
+| **Faster-than-Realtime**  | Yes                                       | Yes                                                                 |
+| **Runs on FC Hardware**   | No                                        | Yes (SYS_HITL=2)                                                    |
+| **macOS Apple Silicon**   | Unstable (known issues)                   | Works natively                                                      |
+| **Lockstep**              | Yes                                       | Yes                                                                 |
 
 :::tip
 For a detailed analysis of PX4 simulation user needs, priorities, and pain points, see the [PX4 Simulation Integration Survey Report](https://www.mcguirerobotics.com/px4_sim_research_report/) (K. McGuire, Dronecode Foundation, Dec 2025, 120 respondents).
