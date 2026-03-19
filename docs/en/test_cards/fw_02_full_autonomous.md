@@ -2,7 +2,7 @@
 
 ## Objective
 
-To test the auto modes such as Mission, Loiter, and RTL for fixed wing vehicles.
+To test the auto modes such as Mission, Takeoff, Hold, and RTL for fixed wing vehicles.
 
 ## Preflight
 
@@ -10,11 +10,18 @@ Plan a mission on the ground. Ensure the mission has:
 
 - Takeoff as first waypoint
 - Changes in altitude throughout the mission
-- At least one loiter waypoint
 - Last waypoint is an RTL
 - Duration of 5 to 6 minutes
 
 ## Flight Tests
+
+❏ Takeoff
+
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Engage Takeoff mode (hand launch or runway)
+
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should climb to takeoff altitude
+
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should hold/loiter after reaching takeoff altitude
 
 ❏ Mission
 
@@ -26,13 +33,13 @@ Plan a mission on the ground. Ensure the mission has:
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Enable Mission End RTL
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Duration of 5 to 6 minutes
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Duration of 1 to 2 minutes
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Auto land or loiter at end
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Auto land or hold at end
 
-❏ Loiter
+❏ Hold
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Engage Loiter mode during manual flight
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Engage Hold mode during flight
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should orbit at current position and altitude
 
@@ -48,7 +55,7 @@ Plan a mission on the ground. Ensure the mission has:
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should climb to RTL altitude if below it
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should return to home and loiter or land
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Vehicle should return to home and hold or land
 
 ## Expected Results
 

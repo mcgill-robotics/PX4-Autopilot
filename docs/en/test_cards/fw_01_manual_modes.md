@@ -6,15 +6,9 @@ To test that manual flight modes work as expected for fixed wing vehicles.
 
 ## Preflight
 
-Ensure that the vehicle can go into Manual, Stabilized, and Altitude mode while still on the ground.
+Ensure that the vehicle can go into Stabilized, Altitude, and Position mode while still on the ground.
 
 ## Flight Tests
-
-❏ Manual
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response 1:1
 
 ❏ Stabilized
 
