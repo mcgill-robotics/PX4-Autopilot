@@ -36,7 +36,6 @@
 #include "logged_topics.h"
 #include "logger.h"
 #include "messages.h"
-#include "log_data_sanitizer.h"
 
 #include <dirent.h>
 #include <sys/stat.h>
@@ -577,6 +576,9 @@ bool Logger::initialize_topics()
 	}
 
 	_num_subscriptions = logged_topics.subscriptions().count;
+
+	_sanitizer.init();
+
 	return true;
 }
 
@@ -771,8 +773,8 @@ void Logger::run()
 
 
 					// TODO do not poll the parameter so often, store it somewhere, maybe don't even update while logging at all
-					remove_position_from_message(_subscriptions[sub_idx].get_topic()->o_id, _msg_buffer + sizeof(ulog_message_data_s),
-								     _param_sdlog_no_pos_dat.get());
+					_sanitizer.sanitize(_subscriptions[sub_idx].get_topic()->o_id, _msg_buffer + sizeof(ulog_message_data_s),
+							    _param_sdlog_no_pos_dat.get());
 
 					// each message consists of a header followed by an orb data object
 					const size_t msg_size = sizeof(ulog_message_data_s) + sub.get_topic()->o_size_no_padding;

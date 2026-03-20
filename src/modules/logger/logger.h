@@ -36,6 +36,7 @@
 #include "log_writer.h"
 #include "logged_topics.h"
 #include "messages.h"
+#include "log_data_sanitizer.h"
 #include "watchdog.h"
 #include <containers/Array.hpp>
 #include "util.h"
@@ -390,6 +391,8 @@ private:
 	uint32_t					_message_gaps{0};
 
 	timer_callback_data_s				_timer_callback_data{};
+
+	LogDataSanitizer				_sanitizer{};
 
 	uORB::Subscription				_manual_control_setpoint_sub{ORB_ID(manual_control_setpoint)};
 	uORB::Subscription				_vehicle_command_sub{ORB_ID(vehicle_command)};
