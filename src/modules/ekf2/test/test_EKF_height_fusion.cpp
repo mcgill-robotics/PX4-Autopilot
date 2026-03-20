@@ -378,6 +378,75 @@ TEST_F(EkfHeightFusionTest, baroRefAllHgtFailReset)
 	EXPECT_TRUE(reset_logging_checker.isVerticalVelocityResetCounterIncreasedBy(0));
 }
 
+TEST_F(EkfHeightFusionTest, baroGroundEffectVarianceInflation)
+{
+	// GIVEN: GPS reference with baro fusion, range data available but range fusion disabled.
+	// This uses the raw range sensor fallback in updateGroundEffect() for responsive control.
+	const float ge_noise_inflation = 4.f;
+	const float baro_noise = _ekf->getParamHandle()->ekf2_baro_noise;
+	_ekf->getParamHandle()->ekf2_baro_ge_ni = ge_noise_inflation;
+	_ekf->getParamHandle()->ekf2_baro_ge_hgt = 2.f;
+
+	_ekf_wrapper.setGpsHeightRef();
+	_ekf_wrapper.enableBaroHeightFusion();
+	_ekf_wrapper.enableGpsHeightFusion();
+	_ekf_wrapper.disableRangeHeightFusion();
+
+	// Start at high altitude — no ground effect
+	_sensor_simulator._rng.setData(5.f, 100);
+	_sensor_simulator.runSeconds(11);
+
+	EXPECT_TRUE(_ekf_wrapper.isIntendingBaroHeightFusion());
+	EXPECT_FALSE(_ekf->control_status_flags().gnd_effect);
+
+	// WHEN: range sensor reports low altitude (below ground effect height)
+	_sensor_simulator._rng.setData(0.5f, 100);
+	_sensor_simulator.runSeconds(5);
+
+	// THEN: ground effect flag is active and baro observation variance includes GE inflation
+	EXPECT_TRUE(_ekf->control_status_flags().gnd_effect);
+	const float obs_var_with_ge = _ekf->aid_src_baro_hgt().observation_variance;
+	EXPECT_GE(obs_var_with_ge, baro_noise * baro_noise + ge_noise_inflation * ge_noise_inflation - 0.1f);
+
+	// WHEN: range sensor reports high altitude (above ground effect height)
+	_sensor_simulator._rng.setData(5.f, 100);
+	_sensor_simulator.runSeconds(5);
+
+	// THEN: ground effect clears and variance drops
+	EXPECT_FALSE(_ekf->control_status_flags().gnd_effect);
+	const float obs_var_no_ge = _ekf->aid_src_baro_hgt().observation_variance;
+	EXPECT_LT(obs_var_no_ge, obs_var_with_ge);
+}
+
+TEST_F(EkfHeightFusionTest, baroGroundEffectDisabledWhenParamZero)
+{
+	// GIVEN: ground effect noise inflation disabled (param = 0), range fusion disabled
+	_ekf->getParamHandle()->ekf2_baro_ge_ni = 0.f;
+	_ekf->getParamHandle()->ekf2_baro_ge_hgt = 2.f;
+
+	_ekf_wrapper.setGpsHeightRef();
+	_ekf_wrapper.enableBaroHeightFusion();
+	_ekf_wrapper.enableGpsHeightFusion();
+	_ekf_wrapper.disableRangeHeightFusion();
+
+	// Start high — record baseline variance
+	_sensor_simulator._rng.setData(5.f, 100);
+	_sensor_simulator.runSeconds(11);
+
+	EXPECT_FALSE(_ekf->control_status_flags().gnd_effect);
+	const float obs_var_high = _ekf->aid_src_baro_hgt().observation_variance;
+
+	// WHEN: range sensor reports low altitude — ground effect activates
+	_sensor_simulator._rng.setData(0.5f, 100);
+	_sensor_simulator.runSeconds(5);
+
+	EXPECT_TRUE(_ekf->control_status_flags().gnd_effect);
+
+	// THEN: baro variance should NOT be inflated (param is 0)
+	const float obs_var_low = _ekf->aid_src_baro_hgt().observation_variance;
+	EXPECT_NEAR(obs_var_low, obs_var_high, 2.f);
+}
+
 TEST_F(EkfHeightFusionTest, changeEkfOriginAlt)
 {
 	_sensor_simulator.startBaro();
