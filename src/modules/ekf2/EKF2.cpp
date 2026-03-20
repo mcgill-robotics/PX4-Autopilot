@@ -270,7 +270,7 @@ void EKF2::AdvertiseTopics()
 
 #if defined(CONFIG_EKF2_BAROMETER)
 
-		if (_fc.baro.enabled) {
+		if (_param_ekf2_baro_ctrl.get()) {
 			_estimator_aid_src_baro_hgt_pub.advertise();
 			_estimator_baro_bias_pub.advertise();
 		}
@@ -352,7 +352,7 @@ void EKF2::AdvertiseTopics()
 
 #if defined(CONFIG_EKF2_OPTICAL_FLOW)
 
-		if (_fc.of.enabled) {
+		if (_param_ekf2_of_ctrl.get()) {
 			_estimator_optical_flow_vel_pub.advertise();
 			_estimator_aid_src_optical_flow_pub.advertise();
 		}
