@@ -1952,11 +1952,15 @@ void Commander::run()
 
 			// Arm automatically on boot once preflight checks pass
 			// _arm_on_boot_done prevents re-arming after disarming
-			if (_param_com_arm_on_boot.get() && !_arm_on_boot_done && !isArmed()) {
-				if (pre_flight_checks_pass) {
-					if (arm(arm_disarm_reason_t::mission_start, false) != TRANSITION_DENIED) {
-						_arm_on_boot_done = true;
-					}
+			const bool should_arm_on_boot = _param_com_arm_on_boot.get()
+							&& !_arm_on_boot_done
+							&& !isArmed()
+							&& hrt_elapsed_time(&_boot_timestamp) > 5_s
+							&& pre_flight_checks_pass;
+
+			if (should_arm_on_boot) {
+				if (arm(arm_disarm_reason_t::mission_start, false) != TRANSITION_DENIED) {
+					_arm_on_boot_done = true;
 				}
 			}
 		}
