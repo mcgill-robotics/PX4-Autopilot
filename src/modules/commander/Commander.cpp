@@ -1870,6 +1870,7 @@ void Commander::run()
 #endif // BOARD_HAS_POWER_CONTROL
 
 	_boot_timestamp = hrt_absolute_time();
+	_arm_on_boot_requested = _param_com_arm_on_boot.get();
 
 	arm_auth_init(&_mavlink_log_pub, &_vehicle_status.system_id);
 
@@ -1952,7 +1953,7 @@ void Commander::run()
 
 			// Arm automatically on boot once preflight checks pass
 			// _arm_on_boot_done prevents re-arming after disarming
-			const bool should_arm_on_boot = _param_com_arm_on_boot.get()
+			const bool should_arm_on_boot = _arm_on_boot_requested
 							&& !_arm_on_boot_done
 							&& !isArmed()
 							&& hrt_elapsed_time(&_boot_timestamp) > 5_s

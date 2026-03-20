@@ -258,7 +258,8 @@ private:
 
 	hrt_abstime _boot_timestamp{0};
 	hrt_abstime _last_disarmed_timestamp{0};
-	bool _arm_on_boot_done{false}; ///< true once arm-on-boot has been attempted
+	bool _arm_on_boot_done{false};    ///< true once arm-on-boot has been attempted
+	bool _arm_on_boot_requested{false};
 	hrt_abstime _overload_start{0};		///< time when CPU overload started
 
 #if !defined(CONFIG_ARCH_LEDS) && defined(BOARD_HAS_CONTROL_STATUS_LEDS)
