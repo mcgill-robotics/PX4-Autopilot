@@ -67,10 +67,10 @@ public:
 	/**
 	 * @brief Updates the state machine based on the current vehicle condition.
 	 *
-	 * @param dt Time step [us]
-	 * @param accel_x Measured acceleration in body x [m/s/s]
+	 * @param dt Time step [s]
+	 * @param accel_xy_norm Norm of acceleration in the body x-y plane [m/s^2]
 	 */
-	void update(const float dt, const float accel_x);
+	void update(const float dt, const float accel_xy_norm);
 
 	/**
 	 * @brief Get the Launch Detected state
