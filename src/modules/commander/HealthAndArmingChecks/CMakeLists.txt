@@ -48,6 +48,7 @@ px4_add_library(health_and_arming_checks
 	checks/failureDetectorCheck.cpp
 	checks/flightTimeCheck.cpp
 	checks/geofenceCheck.cpp
+	checks/gpsRedundancyCheck.cpp
 	checks/gyroCheck.cpp
 	checks/homePositionCheck.cpp
 	checks/imuConsistencyCheck.cpp
